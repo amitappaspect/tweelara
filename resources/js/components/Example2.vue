@@ -3,12 +3,12 @@
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="card">
-          <div class="card-header">Example Component</div>
+          <div class="card-header">Example 2</div>
 
           <div class="card-body">
-            I'm an example component.
+            I'm an Example 2 component.
             <button class="btn btn-success">
-              <router-link to="/route2">Router Link 2</router-link>
+              <router-link to="/route1">Router Link 1</router-link>
             </button>
           </div>
         </div>
