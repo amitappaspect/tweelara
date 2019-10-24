@@ -8,12 +8,15 @@ require('./bootstrap');
 import VueRouter from 'vue-router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-
+import 'vue-material-design-icons/styles.css';
+import VueStar from 'vue-star';
 
 window.Vue = require('vue');
 
 Vue.use(VueAxios, axios)
 Vue.use(VueRouter)
+Vue.component('VueStar', VueStar)
+
     /**
      * The following block of code may be used to automatically register your
      * Vue components. It will recursively scan this directory for the Vue
@@ -25,15 +28,14 @@ Vue.use(VueRouter)
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('example-component', require('./components/Home.vue').default);
 
-const Route1 = require('./components/ExampleComponent.vue').default;
-const Route2 = require('./components/Example2.vue').default;
+const Home = require('./components/Home.vue').default;
+const TweetList = require('./components/TweetList.vue').default;
 const tweetbox = require('./components/tweetbox.vue').default;
 
 const routes = [
-    { path: '/', component: tweetbox },
-    { path: '/route2', component: Route2 },
+    { path: '/', component: Home },
 ];
 
 const router = new VueRouter({

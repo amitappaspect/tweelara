@@ -1,8 +1,5 @@
 <template>
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-8">
-        <div class="card">
+  <div class="card">
           <div class="card-header">What's going on?</div>
           <div class="alert alert-info sr-only" id="output">{{output}}</div>
           <div class="card-body">
@@ -22,9 +19,6 @@
             </form>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
 </template>
 
 <script>
@@ -42,9 +36,16 @@ export default {
     formSubmit(e) {
       e.preventDefault();
       let currentObj = this;
+      
+      if(this.tweet==''){
+        alert('Please enter something!');
+        return false;
+      }
+
       $("#tweet_btn").html(
         '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span><span>Tweet</span>'
       );
+
       this.axios
         .post("api/v1/tweet/create", {
           tweet: this.tweet,
@@ -58,6 +59,7 @@ export default {
         .catch(function(error) {
           currentObj.output = error;
         });
+        this.tweet = '';
     }
   }
 };

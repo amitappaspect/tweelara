@@ -20,4 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['prefix' => '/v1', 'namespace' => 'Api\V1'], function () {
 
     Route::any('tweet/create', 'TweetController@store');
+
+    Route::any('tweet/all', 'TweetController@all');
+
 });

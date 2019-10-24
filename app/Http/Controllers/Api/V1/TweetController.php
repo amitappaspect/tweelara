@@ -20,4 +20,14 @@ class TweetController extends Controller
             'message' => 'Tweet Posted Successfully!'
         ]);
     }
+
+    public function all(Request $request)
+    {
+    	$tweets = Tweet::with('User')->orderBy('created_at','DESC')->get();
+
+    	return response()->json([
+            'status' => 1,
+            'tweets'=>$tweets
+        ]);
+    }
 }
