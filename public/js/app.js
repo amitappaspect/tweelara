@@ -1771,6 +1771,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -1781,10 +1782,26 @@ __webpack_require__.r(__webpack_exports__);
     TimeAgo: vue2_timeago__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   props: {
-    tweets: Object
+    tweets: Object,
+    is_liked: 'background-color:blue;',
+    is_not_liked: ''
+  },
+  data: function data() {
+    return {
+      avatar_img: 'border-radius: 10px;margin-right: 8px;'
+    };
   },
   mounted: function mounted() {},
-  methods: {}
+  methods: {
+    doLike: function doLike(tweet_id) {
+      this.axios.post("api/v1/tweet/like", {
+        user_id: $("#uid").val(),
+        tweet_id: tweet_id
+      }).then(function (response) {
+        alert(response.data.status);
+      })["catch"](function (error) {});
+    }
+  }
 });
 
 /***/ }),
@@ -38062,6 +38079,10 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card text-left mt-2" }, [
     _c("div", { staticClass: "card-header" }, [
+      _c("img", {
+        style: _vm.avatar_img,
+        attrs: { src: _vm.tweets.user.avatar_url, height: "40" }
+      }),
       _vm._v("\n      " + _vm._s(_vm.tweets.user.name) + "\n      "),
       _c(
         "p",
@@ -38082,7 +38103,19 @@ var render = function() {
     _c("div", { staticClass: "card-footer text-muted" }, [
       _c(
         "span",
-        [_vm._v("Likes "), _c("like", { attrs: { fillColor: "#3574d4" } })],
+        {
+          on: {
+            click: function($event) {
+              return _vm.doLike(_vm.tweets.id)
+            }
+          }
+        },
+        [
+          _vm._v(
+            _vm._s(_vm.tweets.likes ? _vm.tweets.likes.total_like : 0) + " "
+          ),
+          _c("like", { attrs: { fillColor: "#3490dc" } })
+        ],
         1
       ),
       _vm._v(" "),

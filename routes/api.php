@@ -22,5 +22,7 @@ Route::group(['prefix' => '/v1', 'namespace' => 'Api\V1'], function () {
     Route::any('tweet/create', 'TweetController@store');
 
     Route::any('tweet/all', 'TweetController@all');
+    
+    Route::any('tweet/like', 'TweetController@like');
 
 });

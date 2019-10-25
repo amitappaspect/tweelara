@@ -19,4 +19,9 @@ class Tweet extends Model
     {
     	return $this->hasOne('App\User','id','user_id');
     }
+
+    public function Likes()
+    {
+        return $this->hasOne('App\TweetLikes','tweet_id','id');
+    }
 }
