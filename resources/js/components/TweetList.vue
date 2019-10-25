@@ -11,7 +11,7 @@
         <!-- <h5 class="card-title">Tweet</h5> -->
         <p class="card-text">{{ tweets.tweet }}</p>
       </div>
-      <div class="card-footer text-muted">
+      <div class="card-footer">
         <span @click="doLike(tweets.id)" >{{ (tweets.likes) ? tweets.likes.total_like : 0 }} <like fillColor="#3490dc"/></span>
         <span>Comments <Comment fillColor="#3574d4"/></span>
       </div>
@@ -22,6 +22,7 @@
 
 import like from 'vue-material-design-icons/ThumbUp.vue';
 import Comment from 'vue-material-design-icons/Comment.vue';
+import AndroidIcon from 'vue-material-design-icons/Android.vue';
 import TimeAgo from 'vue2-timeago'
 
 
@@ -29,7 +30,8 @@ export default {
   components: {
     like,
     Comment,
-    TimeAgo
+    TimeAgo,
+    AndroidIcon
   },
   props: {
     tweets: Object,
